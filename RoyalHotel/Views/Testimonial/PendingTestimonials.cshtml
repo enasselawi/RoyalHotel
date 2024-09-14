@@ -1,0 +1,36 @@
+﻿@model IEnumerable<RoyalHotel.Models.Testimonials>
+@{
+    ViewData["Title"] = "PendingTestimonials";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h2>Pending Testimonials</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Message</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var testimonial in Model)
+        {
+            <tr>
+                <td>@testimonial.Content</td>
+                <td>
+                    <form asp-action="ApproveTestimonial" method="post">
+                        <input type="hidden" name="id" value="@testimonial.TestimonialId" />
+                        <button type="submit">Approve</button>
+                    </form>
+                    <form asp-action="RejectTestimonial" method="post">
+                        <input type="hidden" name="id" value="@testimonial.TestimonialId" />
+                        <button type="submit">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

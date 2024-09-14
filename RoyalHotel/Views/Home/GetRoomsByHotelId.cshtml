@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Room>
+@{
+    ViewData["Title"] = "GetRoomsByHotelId";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+
+<div class="back_re">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <h2>Rooms</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- our_room -->
+<div class="our_room">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <p class="margin_0">Lorem Ipsum available, but the majority have suffered </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div id="serv_hover" class="room">
+                       
+                        <div class="bed_room">
+                            <h3> Room Type:@item.RoomType</h3>
+                            <p>Price: @item.Price <br /> Capacity : @item.Capacity </p>
+@*                             <a  class="btn btn-danger btn-sm">Book</a>
+ *@                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+<!-- end our_room -->

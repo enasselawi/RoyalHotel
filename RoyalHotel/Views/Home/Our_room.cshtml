@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Hotel>
+@{
+    ViewData["Title"] = "Our_room";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="back_re">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <h2>Our Hotels</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- our_room -->
+<div class="our_room">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <p class="margin_0">Lorem Ipsum available, but the majority have suffered </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach(var item in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div id="serv_hover" class="room">
+                        <div class="room_img">
+                            <figure><img src=@Url.Content("~/Images/"+item.ImageUrl) asp-append-version="true" alt="#" /></figure>
+                        </div>
+                        <div class="bed_room">
+                            <h3> Hotel:@item.Name</h3>
+                            <p>Location: @item.Location <br /> Contact:@item.Contact </p>
+
+                            <a asp-controller="Home" asp-action="GetRoomsByHotelId" asp-route-id="@item.HotelId" class="btn btn-danger btn-sm">Rooms</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+           
+            
+            
+            
+            
+            
+        </div>
+    </div>
+</div>
+<!-- end our_room -->
+

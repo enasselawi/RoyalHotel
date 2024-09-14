@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Gallery>
+@{
+    ViewData["Title"] = "Gallery";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="back_re">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <h2>gallery</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- gallery -->
+<div class="gallery">
+    <div class="container">
+        <div class="row">
+            @foreach(var item in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="gallery_img">
+                        <figure><img src=@Url.Content("~/Images/"+item.ImageUrl) asp-append-version="true" alt="#" /></figure>
+                    </div>
+                </div>
+            }
+           
+        </div>
+    </div>
+</div>
+<!-- end gallery -->

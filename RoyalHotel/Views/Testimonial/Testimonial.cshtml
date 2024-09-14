@@ -1,0 +1,33 @@
+﻿@model RoyalHotel.Models.Testimonials
+@{
+    ViewData["Title"] = "Testimonial";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+
+
+<h2>Add New Testimonial </h2>
+
+<form asp-action="Testimonial" method="post">
+    <div class="form-group">
+        <label asp-for="Content" class="control-label">Testimonial</label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Send" class="btn btn-primary" />
+    </div>
+</form>
+
+@* <div>
+    <a asp-action="Index">اback </a>
+</div> *@
+
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+ *@

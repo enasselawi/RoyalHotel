@@ -1,0 +1,73 @@
+﻿@model IEnumerable<RoyalHotel.Models.Testimonials>
+@{
+    ViewData["Title"] = "ApprovedTestimonials";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .testimonial-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            background-color: #fff;
+        }
+
+            .testimonial-card h3 {
+                margin-top: 0;
+                font-size: 1.2em;
+                color: #c8102e; 
+            }
+
+            .testimonial-card p {
+                margin: 0;
+                font-size: 1em;
+            }
+
+            .testimonial-card .date {
+                font-size: 0.9em;
+                color: #666;
+            }
+
+            .testimonial-card .user {
+                font-weight: bold;
+                color: #666;
+                
+            }
+
+        .testimonials-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+  
+
+    <div class="testimonials-container">
+        @foreach (var testimonial in Model)
+        {
+            <div class="testimonial-card">
+                <h3>@testimonial.Content</h3>
+                <p class="user">Posted by: @testimonial.User.FirstName</p>
+                <p class="date">Date: @(testimonial.CreatedAt.HasValue ? testimonial.CreatedAt.Value.ToString("MMM d, yyyy") : "Date not available")</p>
+            </div>
+        }
+    </div>
+</body>
+</html>

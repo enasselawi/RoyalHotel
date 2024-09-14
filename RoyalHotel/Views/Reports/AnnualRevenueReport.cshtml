@@ -1,0 +1,14 @@
+﻿@model RoyalHotel.Models.ViewModels.AnnualRevenueReportViewModel
+@{
+    ViewData["Title"] = "AnnualRevenueReport";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Annual Revenue Report</h1>
+
+<form asp-action="AnnualRevenueReport" method="post">
+    <div class="form-group">
+        <label for="year">Enter Year:</label>
+        <input type="number" class="form-control" id="year" name="year" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+</form>

@@ -1,0 +1,165 @@
+﻿@model RoyalHotel.Models.ViewModels.PaymentViewModel
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>Payment Page</h2>
+
+<form method="post" asp-action="ProcessPayment">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="RoomId" value="@Model.RoomId" />
+    <input type="hidden" name="CheckInDate" value="@Model.CheckInDate.ToString("yyyy-MM-dd")" />
+    <input type="hidden" name="CheckOutDate" value="@Model.CheckOutDate.ToString("yyyy-MM-dd")" />
+    <input type="hidden" name="TotalCost" value="@Model.TotalCost" />
+
+    <div class="form-group">
+        <label for="CardNumber">Card Number:</label>
+        <input type="text" id="CardNumber" name="CardNumber" class="form-control" required />
+        @Html.ValidationMessageFor(m => m.CardNumber)
+    </div>
+
+    <div class="form-group">
+        <label for="ExpiryDate">Expiry Date:</label>
+        <input type="month" id="ExpiryDate" name="ExpiryDate" class="form-control" required />
+        @Html.ValidationMessageFor(m => m.ExpiryDate)
+    </div>
+
+    <div class="form-group">
+        <label for="CVV">CVV:</label>
+        <input type="text" id="CVV" name="CVV" class="form-control" required />
+        @Html.ValidationMessageFor(m => m.CVV)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Complete the Reservation</button>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+</form>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color:red;">@ViewBag.ErrorMessage</p>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model RoyalHotel.Models.ViewModels.PaymentViewModel
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+
+
+
+<h2>Payment page</h2>
+
+<form method="post" asp-action="ProcessPayment">
+    <input type="hidden" name="RoomId" value="@Model.RoomId" />
+    <input type="hidden" name="CheckInDate" value="@Model.CheckInDate.ToString("yyyy-MM-dd")" />
+    <input type="hidden" name="CheckOutDate" value="@Model.CheckOutDate.ToString("yyyy-MM-dd")" />
+    <input type="hidden" name="TotalCost" value="@Model.TotalCost" />
+
+    <label for="CardNumber">Card number:</label>
+    <input type="text" id="CardNumber" name="CardNumber" required />
+
+    <label for="ExpiryDate">Expiry date:</label>
+    <input type="month" id="ExpiryDate" name="ExpiryDate" required />
+
+    <label for="CVV">CVV:</label>
+    <input type="text" id="CVV" name="CVV" required />
+
+    <button type="submit">Complete the reservation</button>
+</form>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color:red;">@ViewBag.ErrorMessage</p>
+}
+
+
+ *@

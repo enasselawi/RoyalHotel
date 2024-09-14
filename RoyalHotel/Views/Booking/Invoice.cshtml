@@ -1,0 +1,33 @@
+﻿@model RoyalHotel.Models.ViewModels.InvoiceViewModel
+
+@{
+    ViewData["Title"] = "Invoice";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h1>Booking Invoice</h1>
+
+<div id="invoiceContainer">
+    <p>Booking number: @Model.ReservationId</p>
+    <p>Date: @Model.ReservationDate.ToString("yyyy-MM-dd")</p>
+    <p>Total: @Model.TotalPrice.ToString("C")</p>
+    <p>Payment status: @Model.PaymentStatus</p>
+</div>
+
+<button onclick="downloadPDF()">Download PDF</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>
+    function downloadPDF() {
+        const element = document.getElementById('invoiceContainer');
+        const opt = {
+            margin: 1,
+            filename: 'Invoice.pdf', // اسم الملف المخصص
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        html2pdf().from(element).set(opt).save();
+    }
+</script>

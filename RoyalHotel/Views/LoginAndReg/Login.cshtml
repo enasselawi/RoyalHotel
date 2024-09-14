@@ -1,0 +1,63 @@
+﻿@model RoyalHotel.Models.Userlogin
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign in </title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/LoginAndRegAss/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/LoginAndRegAss/css/style.css">
+</head>
+<body>
+
+    <!-- Sing in  Form -->
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="~/Images/royal.png" alt="sing up image"></figure>
+                    <a asp-action="Register" class="signup-image-link">Create an account</a>
+                </div>
+
+                <div class="signin-form">
+                    <h2 class="form-title">Sign in</h2>
+                    <form method="POST" class="register-form" id="login-form">
+                        <div class="form-group">
+                            <label asp-for="Username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input asp-for="Username" type="text" name="Username" id="Username" placeholder="Your Name" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password"><i class="zmdi zmdi-lock"></i></label>
+                            <input asp-for="Password" type="password" name="Password" id="Password" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                           
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="Login" id="Login" class="form-submit" value="Login" />
+                        </div>
+                    </form>
+                    <div class="social-login">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script src="~/LoginAndRegAss/vendor/jquery/jquery.min.js"></script>
+    <script src="~/LoginAndRegAss/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+

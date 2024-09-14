@@ -1,0 +1,21 @@
+﻿@model RoyalHotel.Models.ViewModels.MonthlyRevenueReportInputModel
+@{
+    ViewData["Title"] = "MonthlyRevenueInput";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>MonthlyRevenueInput</h1>
+<form asp-action="MonthlyRevenueReport" method="post">
+    <div>
+        <label for="Month">Month:</label>
+        <input type="number" id="Month" name="Month" asp-for="Month" min="1" max="12" />
+        <span asp-validation-for="Month"></span>
+    </div>
+    <div>
+        <label for="Year">Year:</label>
+        <input type="number" id="Year" name="Year" asp-for="Year" min="1900" max="2100" />
+        <span asp-validation-for="Year"></span>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+

@@ -1,0 +1,45 @@
+﻿@model RoyalHotel.Models.ViewModels.MonthlyRevenueReportViewModel
+
+@{
+    ViewData["Title"] = "Monthly Revenue Report";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Revenue Report</title>
+    <!-- تضمين مكتبة html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <h1>Monthly Revenue Report</h1>
+
+    
+    <div id="reportContainer">
+        <p><strong>Month:</strong> @Model.Month</p>
+        <p><strong>Year:</strong> @Model.Year</p>
+        <p><strong>Total Revenue:</strong> @Model.TotalRevenue.ToString("C")</p>
+    </div>
+
+    
+    <button onclick="downloadPDF()">Download PDF</button>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('reportContainer');
+            const opt = {
+                margin: 1,
+                filename: 'MonthlyRevenueReport.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+    </script>
+</body>
+</html>

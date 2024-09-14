@@ -1,0 +1,52 @@
+﻿@model RoyalHotel.Models.ViewModels.SearchViewModel
+
+@{
+   
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+<div class="available_rooms container">
+    <h2 class="text-center my-4 text-danger">Available Rooms</h2>
+    <div class="row">
+        @if (Model != null && Model.AvailableRooms != null && Model.AvailableRooms.Any())
+        {
+          
+            @for (int i = 0; i < Model.AvailableRooms.Count; i++)
+            {
+                var room = Model.AvailableRooms[i];
+                <div class="col-md-4 mb-4">
+                    <div class="card border-danger">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger"><strong>Hotel:</strong> @room.Hotel?.Name</h5>
+                            <p class="card-text text-danger">
+                                <strong>Room Type:</strong> @room.RoomType <br />
+                                <strong>Capacity:</strong> @room.Capacity <br />
+                                <strong>Price:</strong> $@room.Price
+                            </p>
+
+                          
+                            <form asp-controller="Booking" asp-action="BookRoom" method="post">
+                                
+                                <input type="hidden" name="CheckInDate" value="@Model.CheckInDate" />
+                                <input type="hidden" name="CheckOutDate" value="@Model.CheckOutDate" />
+                                <input type="hidden" name="TotalPrice" value="@Model.TotalPrice" />
+                                <input type="hidden" name="HotelId" value="@Model.HotelId" />
+
+                                <input type="hidden" name="RoomId" value="@room.RoomId" />
+                                <input type="hidden" name="RoomPrice" value="@room.Price" />
+
+                             
+                                <button type="submit" class="btn btn-danger btn-block">Book This Room</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-danger">Check-in date must be before check out date.</p>
+        }
+    </div>
+</div>

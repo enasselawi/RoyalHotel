@@ -1,0 +1,114 @@
+﻿@model IEnumerable<RoyalHotel.Models.ReservationsChartViewModel>
+@{
+    ViewData["Title"] = "ReservationsChart";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations Chart</title>
+    <style>
+       
+        #chartContainer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px; 
+            border-left: 4px solid red;
+            border-bottom: 4px solid red; 
+            margin-top: 50px;
+            position: relative;
+            color: red; 
+        }
+
+        .bar {
+            width: 50px;
+            margin: 0 10px;
+            text-align: center;
+        }
+
+            .bar div {
+                background-color: #4CAF50;
+                width: 100%;
+                position: relative;
+                bottom: 0;
+            }
+
+          
+            .bar span {
+                display: block;
+                margin-top: 10px;
+            }
+
+       
+        #chartContainer::after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            bottom: 0;
+            height: 100%;
+            width: 4px;
+            background: red; 
+        }
+
+        #chartContainer::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: red;
+        }
+
+        button {
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: red; 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+    </style>
+
+
+</head>
+<body>
+    <h3>Reservations Chart / Hotel - Number of Reservations in Each</h3> <!-- العنوان بالأحمر -->
+
+    <button onclick="downloadPDF()">Download PDF</button>
+    <div id="chartContainer">
+        @foreach (var item in Model)
+        {
+            var barHeight = item.ReservationCount * 20; // حساب ارتفاع العمود بناءً على عدد الحجوزات
+            <div class="bar">
+                <div style="height:@barHeight px;"></div>
+                <span>@item.HotelName</span>
+                <div>@item.ReservationCount</div>
+            </div>
+        }
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('chartContainer');
+            const opt = {
+                margin: 1,
+                filename: 'ReservationsChart.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+    </script>
+</body>
+</html>
